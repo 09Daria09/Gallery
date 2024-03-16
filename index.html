@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея изображений</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+    
+        #gallery {
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .thumbnail {
+            border: 3px solid #ddd;
+            padding: 5px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            max-width: 150px;
+            height: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+            border-color: #999;
+        }
+        #main-image {
+            max-width: 80%;
+            height: 600px;
+            display: block;
+            margin: 30px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div id="gallery">
+        <img src="img/2.jpg" class="thumbnail" alt="Изображение 1" data-large-src="large1.jpg">
+        <img src="img/3.jpg" class="thumbnail" alt="Изображение 2" data-large-src="large2.jpg">
+        <img src="img/4.jpg" class="thumbnail" alt="Изображение 3" data-large-src="large3.jpg">
+        <img src="img/5.jpg" class="thumbnail" alt="Изображение 4" data-large-src="large4.jpg">
+        <img src="img/6.jpg" class="thumbnail" alt="Изображение 5" data-large-src="large5.jpg">
+        <img src="img/7.jpg" class="thumbnail" alt="Изображение 6" data-large-src="large6.jpg">
+        <img src="img/8.jpg" class="thumbnail" alt="Изображение 7" data-large-src="large7.jpg">
+    </div>
+
+<img id="main-image" src="img/1.jpg" alt="Главное изображение">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.thumbnail').click(function() {
+            var clickedThumbnailSrc = $(this).attr('src');
+            var currentMainSrc = $('#main-image').attr('src');
+    
+            $('#main-image').fadeOut(500, function() {
+                $(this).attr('src', clickedThumbnailSrc);
+                $('.thumbnail').filter(function() { 
+                    return $(this).attr('src') === clickedThumbnailSrc; 
+                }).attr('src', currentMainSrc);
+                $(this).fadeIn(500);
+            });
+        });
+    });
+    </script>
+    
+    
+    
+    
+    
+    
+    
+
+
+</body>
+</html>
