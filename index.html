@@ -58,23 +58,26 @@
 
 <img id="main-image" src="img/1.jpg" alt="Главное изображение">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.thumbnail').click(function() {
             var clickedThumbnailSrc = $(this).attr('src');
             var currentMainSrc = $('#main-image').attr('src');
     
-            $('#main-image').fadeOut(500, function() {
+            $('#main-image').effect('scale', {percent: 50}, 500, function() {
                 $(this).attr('src', clickedThumbnailSrc);
                 $('.thumbnail').filter(function() { 
                     return $(this).attr('src') === clickedThumbnailSrc; 
                 }).attr('src', currentMainSrc);
-                $(this).fadeIn(500);
+                
+                $(this).effect('scale', {percent: 200}, 500);
             });
         });
     });
-    </script>
+</script>
+
     
     
     
